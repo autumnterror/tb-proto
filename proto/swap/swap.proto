@@ -1,0 +1,21 @@
+syntax = "proto3";
+package auth;
+
+option go_package = "github.com/autumnterror/tb-proto;swaprpc";
+
+service Swap {
+  rpc Swap(SwapRequest) returns (SwapResponse);
+}
+
+
+message SwapRequest {
+  string WalletPrivateKey = 1;
+  string PayMint = 2;
+  string BuyMint = 3;
+  double AmountDouble = 4;
+}
+
+message SwapResponse {
+  string TransactionSign = 1;
+  string Error = 2;
+}
