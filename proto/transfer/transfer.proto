@@ -1,7 +1,7 @@
 syntax = "proto3";
 package auth;
 
-option go_package = "github.com/autumnterror/tb-proto;swaprpc";
+option go_package = "github.com/autumnterror/tb-proto;transferrpc";
 
 service Swap {
   rpc Transfer2022(Transfer2022Request) returns (TransactionResponse);
