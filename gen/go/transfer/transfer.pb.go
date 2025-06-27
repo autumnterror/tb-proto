@@ -4,7 +4,7 @@
 // 	protoc        v6.30.2
 // source: transfer/transfer.proto
 
-package swaprpc
+package transferrpc
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -220,7 +220,7 @@ const file_transfer_transfer_proto_rawDesc = "" +
 	"\x05Error\x18\x02 \x01(\tR\x05Error2\x90\x01\n" +
 	"\x04Swap\x12D\n" +
 	"\fTransfer2022\x12\x19.auth.Transfer2022Request\x1a\x19.auth.TransactionResponse\x12B\n" +
-	"\vTransferSol\x12\x18.auth.TransferSolRequest\x1a\x19.auth.TransactionResponseB*Z(github.com/autumnterror/tb-proto;swaprpcb\x06proto3"
+	"\vTransferSol\x12\x18.auth.TransferSolRequest\x1a\x19.auth.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
 
 var (
 	file_transfer_transfer_proto_rawDescOnce sync.Once

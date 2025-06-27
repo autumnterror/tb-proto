@@ -4,7 +4,7 @@
 // - protoc             v6.30.2
 // source: transfer/transfer.proto
 
-package swaprpc
+package transferrpc
 
 import (
 	context "context"
