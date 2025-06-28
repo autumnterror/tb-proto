@@ -152,7 +152,6 @@ func (x *TransferSolRequest) GetAmountDouble() float64 {
 type TransactionResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	TransactionSign string                 `protobuf:"bytes,1,opt,name=TransactionSign,proto3" json:"TransactionSign,omitempty"`
-	Error           string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -194,13 +193,6 @@ func (x *TransactionResponse) GetTransactionSign() string {
 	return ""
 }
 
-func (x *TransactionResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
 var File_transfer_transfer_proto protoreflect.FileDescriptor
 
 const file_transfer_transfer_proto_rawDesc = "" +
@@ -214,10 +206,9 @@ const file_transfer_transfer_proto_rawDesc = "" +
 	"\x12TransferSolRequest\x12&\n" +
 	"\x0eFromPrivateKey\x18\x01 \x01(\tR\x0eFromPrivateKey\x12 \n" +
 	"\vToPublicKey\x18\x02 \x01(\tR\vToPublicKey\x12\"\n" +
-	"\fAmountDouble\x18\x03 \x01(\x01R\fAmountDouble\"U\n" +
+	"\fAmountDouble\x18\x03 \x01(\x01R\fAmountDouble\"?\n" +
 	"\x13TransactionResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error2\x90\x01\n" +
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\x90\x01\n" +
 	"\x04Swap\x12D\n" +
 	"\fTransfer2022\x12\x19.auth.Transfer2022Request\x1a\x19.auth.TransactionResponse\x12B\n" +
 	"\vTransferSol\x12\x18.auth.TransferSolRequest\x1a\x19.auth.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"

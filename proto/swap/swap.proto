@@ -17,5 +17,4 @@ message SwapRequest {
 
 message SwapResponse {
   string TransactionSign = 1;
-  string Error = 2;
 }

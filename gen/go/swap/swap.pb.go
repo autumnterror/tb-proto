@@ -92,7 +92,6 @@ func (x *SwapRequest) GetAmountDouble() float64 {
 type SwapResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	TransactionSign string                 `protobuf:"bytes,1,opt,name=TransactionSign,proto3" json:"TransactionSign,omitempty"`
-	Error           string                 `protobuf:"bytes,2,opt,name=Error,proto3" json:"Error,omitempty"`
 	unknownFields   protoimpl.UnknownFields
 	sizeCache       protoimpl.SizeCache
 }
@@ -134,13 +133,6 @@ func (x *SwapResponse) GetTransactionSign() string {
 	return ""
 }
 
-func (x *SwapResponse) GetError() string {
-	if x != nil {
-		return x.Error
-	}
-	return ""
-}
-
 var File_swap_swap_proto protoreflect.FileDescriptor
 
 const file_swap_swap_proto_rawDesc = "" +
@@ -150,10 +142,9 @@ const file_swap_swap_proto_rawDesc = "" +
 	"\x10WalletPrivateKey\x18\x01 \x01(\tR\x10WalletPrivateKey\x12\x18\n" +
 	"\aPayMint\x18\x02 \x01(\tR\aPayMint\x12\x18\n" +
 	"\aBuyMint\x18\x03 \x01(\tR\aBuyMint\x12\"\n" +
-	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"N\n" +
+	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"8\n" +
 	"\fSwapResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign\x12\x14\n" +
-	"\x05Error\x18\x02 \x01(\tR\x05Error25\n" +
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign25\n" +
 	"\x04Swap\x12-\n" +
 	"\x04Swap\x12\x11.auth.SwapRequest\x1a\x12.auth.SwapResponseB*Z(github.com/autumnterror/tb-proto;swaprpcb\x06proto3"
 
