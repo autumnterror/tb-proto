@@ -19,139 +19,139 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Swap_Transfer2022_FullMethodName = "/auth.Swap/Transfer2022"
-	Swap_TransferSol_FullMethodName  = "/auth.Swap/TransferSol"
+	Transfer_Transfer2022_FullMethodName = "/auth.Transfer/Transfer2022"
+	Transfer_TransferSol_FullMethodName  = "/auth.Transfer/TransferSol"
 )
 
-// SwapClient is the client API for Swap service.
+// TransferClient is the client API for Transfer service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SwapClient interface {
+type TransferClient interface {
 	Transfer2022(ctx context.Context, in *Transfer2022Request, opts ...grpc.CallOption) (*TransactionResponse, error)
 	TransferSol(ctx context.Context, in *TransferSolRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 }
 
-type swapClient struct {
+type transferClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSwapClient(cc grpc.ClientConnInterface) SwapClient {
-	return &swapClient{cc}
+func NewTransferClient(cc grpc.ClientConnInterface) TransferClient {
+	return &transferClient{cc}
 }
 
-func (c *swapClient) Transfer2022(ctx context.Context, in *Transfer2022Request, opts ...grpc.CallOption) (*TransactionResponse, error) {
+func (c *transferClient) Transfer2022(ctx context.Context, in *Transfer2022Request, opts ...grpc.CallOption) (*TransactionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TransactionResponse)
-	err := c.cc.Invoke(ctx, Swap_Transfer2022_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Transfer_Transfer2022_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *swapClient) TransferSol(ctx context.Context, in *TransferSolRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+func (c *transferClient) TransferSol(ctx context.Context, in *TransferSolRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TransactionResponse)
-	err := c.cc.Invoke(ctx, Swap_TransferSol_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Transfer_TransferSol_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SwapServer is the server API for Swap service.
-// All implementations must embed UnimplementedSwapServer
+// TransferServer is the server API for Transfer service.
+// All implementations must embed UnimplementedTransferServer
 // for forward compatibility.
-type SwapServer interface {
+type TransferServer interface {
 	Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error)
 	TransferSol(context.Context, *TransferSolRequest) (*TransactionResponse, error)
-	mustEmbedUnimplementedSwapServer()
+	mustEmbedUnimplementedTransferServer()
 }
 
-// UnimplementedSwapServer must be embedded to have
+// UnimplementedTransferServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedSwapServer struct{}
+type UnimplementedTransferServer struct{}
 
-func (UnimplementedSwapServer) Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error) {
+func (UnimplementedTransferServer) Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Transfer2022 not implemented")
 }
-func (UnimplementedSwapServer) TransferSol(context.Context, *TransferSolRequest) (*TransactionResponse, error) {
+func (UnimplementedTransferServer) TransferSol(context.Context, *TransferSolRequest) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TransferSol not implemented")
 }
-func (UnimplementedSwapServer) mustEmbedUnimplementedSwapServer() {}
-func (UnimplementedSwapServer) testEmbeddedByValue()              {}
+func (UnimplementedTransferServer) mustEmbedUnimplementedTransferServer() {}
+func (UnimplementedTransferServer) testEmbeddedByValue()                  {}
 
-// UnsafeSwapServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SwapServer will
+// UnsafeTransferServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TransferServer will
 // result in compilation errors.
-type UnsafeSwapServer interface {
-	mustEmbedUnimplementedSwapServer()
+type UnsafeTransferServer interface {
+	mustEmbedUnimplementedTransferServer()
 }
 
-func RegisterSwapServer(s grpc.ServiceRegistrar, srv SwapServer) {
-	// If the following call pancis, it indicates UnimplementedSwapServer was
+func RegisterTransferServer(s grpc.ServiceRegistrar, srv TransferServer) {
+	// If the following call pancis, it indicates UnimplementedTransferServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&Swap_ServiceDesc, srv)
+	s.RegisterService(&Transfer_ServiceDesc, srv)
 }
 
-func _Swap_Transfer2022_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Transfer_Transfer2022_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Transfer2022Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SwapServer).Transfer2022(ctx, in)
+		return srv.(TransferServer).Transfer2022(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Swap_Transfer2022_FullMethodName,
+		FullMethod: Transfer_Transfer2022_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SwapServer).Transfer2022(ctx, req.(*Transfer2022Request))
+		return srv.(TransferServer).Transfer2022(ctx, req.(*Transfer2022Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Swap_TransferSol_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _Transfer_TransferSol_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TransferSolRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SwapServer).TransferSol(ctx, in)
+		return srv.(TransferServer).TransferSol(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Swap_TransferSol_FullMethodName,
+		FullMethod: Transfer_TransferSol_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SwapServer).TransferSol(ctx, req.(*TransferSolRequest))
+		return srv.(TransferServer).TransferSol(ctx, req.(*TransferSolRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// Swap_ServiceDesc is the grpc.ServiceDesc for Swap service.
+// Transfer_ServiceDesc is the grpc.ServiceDesc for Transfer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var Swap_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Swap",
-	HandlerType: (*SwapServer)(nil),
+var Transfer_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "auth.Transfer",
+	HandlerType: (*TransferServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "Transfer2022",
-			Handler:    _Swap_Transfer2022_Handler,
+			Handler:    _Transfer_Transfer2022_Handler,
 		},
 		{
 			MethodName: "TransferSol",
-			Handler:    _Swap_TransferSol_Handler,
+			Handler:    _Transfer_TransferSol_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

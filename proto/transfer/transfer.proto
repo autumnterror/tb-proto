@@ -3,7 +3,7 @@ package auth;
 
 option go_package = "github.com/autumnterror/tb-proto;transferrpc";
 
-service Swap {
+service Transfer {
   rpc Transfer2022(Transfer2022Request) returns (TransactionResponse);
   rpc TransferSol(TransferSolRequest) returns (TransactionResponse);
 }

@@ -208,8 +208,8 @@ const file_transfer_transfer_proto_rawDesc = "" +
 	"\vToPublicKey\x18\x02 \x01(\tR\vToPublicKey\x12\"\n" +
 	"\fAmountDouble\x18\x03 \x01(\x01R\fAmountDouble\"?\n" +
 	"\x13TransactionResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\x90\x01\n" +
-	"\x04Swap\x12D\n" +
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\x94\x01\n" +
+	"\bTransfer\x12D\n" +
 	"\fTransfer2022\x12\x19.auth.Transfer2022Request\x1a\x19.auth.TransactionResponse\x12B\n" +
 	"\vTransferSol\x12\x18.auth.TransferSolRequest\x1a\x19.auth.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
 
@@ -232,10 +232,10 @@ var file_transfer_transfer_proto_goTypes = []any{
 	(*TransactionResponse)(nil), // 2: auth.TransactionResponse
 }
 var file_transfer_transfer_proto_depIdxs = []int32{
-	0, // 0: auth.Swap.Transfer2022:input_type -> auth.Transfer2022Request
-	1, // 1: auth.Swap.TransferSol:input_type -> auth.TransferSolRequest
-	2, // 2: auth.Swap.Transfer2022:output_type -> auth.TransactionResponse
-	2, // 3: auth.Swap.TransferSol:output_type -> auth.TransactionResponse
+	0, // 0: auth.Transfer.Transfer2022:input_type -> auth.Transfer2022Request
+	1, // 1: auth.Transfer.TransferSol:input_type -> auth.TransferSolRequest
+	2, // 2: auth.Transfer.Transfer2022:output_type -> auth.TransactionResponse
+	2, // 3: auth.Transfer.TransferSol:output_type -> auth.TransactionResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
