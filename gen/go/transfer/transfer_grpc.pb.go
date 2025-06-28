@@ -20,7 +20,6 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	Transfer_Transfer2022_FullMethodName = "/auth.Transfer/Transfer2022"
-	Transfer_TransferSol_FullMethodName  = "/auth.Transfer/TransferSol"
 )
 
 // TransferClient is the client API for Transfer service.
@@ -28,7 +27,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransferClient interface {
 	Transfer2022(ctx context.Context, in *Transfer2022Request, opts ...grpc.CallOption) (*TransactionResponse, error)
-	TransferSol(ctx context.Context, in *TransferSolRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 }
 
 type transferClient struct {
@@ -49,22 +47,11 @@ func (c *transferClient) Transfer2022(ctx context.Context, in *Transfer2022Reque
 	return out, nil
 }
 
-func (c *transferClient) TransferSol(ctx context.Context, in *TransferSolRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(TransactionResponse)
-	err := c.cc.Invoke(ctx, Transfer_TransferSol_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // TransferServer is the server API for Transfer service.
 // All implementations must embed UnimplementedTransferServer
 // for forward compatibility.
 type TransferServer interface {
 	Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error)
-	TransferSol(context.Context, *TransferSolRequest) (*TransactionResponse, error)
 	mustEmbedUnimplementedTransferServer()
 }
 
@@ -77,9 +64,6 @@ type UnimplementedTransferServer struct{}
 
 func (UnimplementedTransferServer) Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Transfer2022 not implemented")
-}
-func (UnimplementedTransferServer) TransferSol(context.Context, *TransferSolRequest) (*TransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method TransferSol not implemented")
 }
 func (UnimplementedTransferServer) mustEmbedUnimplementedTransferServer() {}
 func (UnimplementedTransferServer) testEmbeddedByValue()                  {}
@@ -120,24 +104,6 @@ func _Transfer_Transfer2022_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Transfer_TransferSol_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(TransferSolRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TransferServer).TransferSol(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: Transfer_TransferSol_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransferServer).TransferSol(ctx, req.(*TransferSolRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // Transfer_ServiceDesc is the grpc.ServiceDesc for Transfer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -148,10 +114,6 @@ var Transfer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Transfer2022",
 			Handler:    _Transfer_Transfer2022_Handler,
-		},
-		{
-			MethodName: "TransferSol",
-			Handler:    _Transfer_TransferSol_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

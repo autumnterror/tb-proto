@@ -5,7 +5,6 @@ option go_package = "github.com/autumnterror/tb-proto;transferrpc";
 
 service Transfer {
   rpc Transfer2022(Transfer2022Request) returns (TransactionResponse);
-  rpc TransferSol(TransferSolRequest) returns (TransactionResponse);
 }
 
 message Transfer2022Request {
@@ -15,11 +14,6 @@ message Transfer2022Request {
   double AmountDouble = 4;
 }
 
-message TransferSolRequest {
-  string FromPrivateKey = 1;
-  string ToPublicKey = 2;
-  double AmountDouble = 3;
-}
 
 message TransactionResponse {
   string TransactionSign = 1;

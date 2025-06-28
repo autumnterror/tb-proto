@@ -89,66 +89,6 @@ func (x *Transfer2022Request) GetAmountDouble() float64 {
 	return 0
 }
 
-type TransferSolRequest struct {
-	state          protoimpl.MessageState `protogen:"open.v1"`
-	FromPrivateKey string                 `protobuf:"bytes,1,opt,name=FromPrivateKey,proto3" json:"FromPrivateKey,omitempty"`
-	ToPublicKey    string                 `protobuf:"bytes,2,opt,name=ToPublicKey,proto3" json:"ToPublicKey,omitempty"`
-	AmountDouble   float64                `protobuf:"fixed64,3,opt,name=AmountDouble,proto3" json:"AmountDouble,omitempty"`
-	unknownFields  protoimpl.UnknownFields
-	sizeCache      protoimpl.SizeCache
-}
-
-func (x *TransferSolRequest) Reset() {
-	*x = TransferSolRequest{}
-	mi := &file_transfer_transfer_proto_msgTypes[1]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TransferSolRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TransferSolRequest) ProtoMessage() {}
-
-func (x *TransferSolRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[1]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TransferSolRequest.ProtoReflect.Descriptor instead.
-func (*TransferSolRequest) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{1}
-}
-
-func (x *TransferSolRequest) GetFromPrivateKey() string {
-	if x != nil {
-		return x.FromPrivateKey
-	}
-	return ""
-}
-
-func (x *TransferSolRequest) GetToPublicKey() string {
-	if x != nil {
-		return x.ToPublicKey
-	}
-	return ""
-}
-
-func (x *TransferSolRequest) GetAmountDouble() float64 {
-	if x != nil {
-		return x.AmountDouble
-	}
-	return 0
-}
-
 type TransactionResponse struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	TransactionSign string                 `protobuf:"bytes,1,opt,name=TransactionSign,proto3" json:"TransactionSign,omitempty"`
@@ -158,7 +98,7 @@ type TransactionResponse struct {
 
 func (x *TransactionResponse) Reset() {
 	*x = TransactionResponse{}
-	mi := &file_transfer_transfer_proto_msgTypes[2]
+	mi := &file_transfer_transfer_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -170,7 +110,7 @@ func (x *TransactionResponse) String() string {
 func (*TransactionResponse) ProtoMessage() {}
 
 func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[2]
+	mi := &file_transfer_transfer_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -183,7 +123,7 @@ func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionResponse.ProtoReflect.Descriptor instead.
 func (*TransactionResponse) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{2}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *TransactionResponse) GetTransactionSign() string {
@@ -202,16 +142,11 @@ const file_transfer_transfer_proto_rawDesc = "" +
 	"\x0eFromPrivateKey\x18\x01 \x01(\tR\x0eFromPrivateKey\x12 \n" +
 	"\vToPublicKey\x18\x02 \x01(\tR\vToPublicKey\x12\x1c\n" +
 	"\tTokenMint\x18\x03 \x01(\tR\tTokenMint\x12\"\n" +
-	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"\x82\x01\n" +
-	"\x12TransferSolRequest\x12&\n" +
-	"\x0eFromPrivateKey\x18\x01 \x01(\tR\x0eFromPrivateKey\x12 \n" +
-	"\vToPublicKey\x18\x02 \x01(\tR\vToPublicKey\x12\"\n" +
-	"\fAmountDouble\x18\x03 \x01(\x01R\fAmountDouble\"?\n" +
+	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"?\n" +
 	"\x13TransactionResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\x94\x01\n" +
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2P\n" +
 	"\bTransfer\x12D\n" +
-	"\fTransfer2022\x12\x19.auth.Transfer2022Request\x1a\x19.auth.TransactionResponse\x12B\n" +
-	"\vTransferSol\x12\x18.auth.TransferSolRequest\x1a\x19.auth.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
+	"\fTransfer2022\x12\x19.auth.Transfer2022Request\x1a\x19.auth.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
 
 var (
 	file_transfer_transfer_proto_rawDescOnce sync.Once
@@ -225,19 +160,16 @@ func file_transfer_transfer_proto_rawDescGZIP() []byte {
 	return file_transfer_transfer_proto_rawDescData
 }
 
-var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_transfer_transfer_proto_goTypes = []any{
 	(*Transfer2022Request)(nil), // 0: auth.Transfer2022Request
-	(*TransferSolRequest)(nil),  // 1: auth.TransferSolRequest
-	(*TransactionResponse)(nil), // 2: auth.TransactionResponse
+	(*TransactionResponse)(nil), // 1: auth.TransactionResponse
 }
 var file_transfer_transfer_proto_depIdxs = []int32{
 	0, // 0: auth.Transfer.Transfer2022:input_type -> auth.Transfer2022Request
-	1, // 1: auth.Transfer.TransferSol:input_type -> auth.TransferSolRequest
-	2, // 2: auth.Transfer.Transfer2022:output_type -> auth.TransactionResponse
-	2, // 3: auth.Transfer.TransferSol:output_type -> auth.TransactionResponse
-	2, // [2:4] is the sub-list for method output_type
-	0, // [0:2] is the sub-list for method input_type
+	1, // 1: auth.Transfer.Transfer2022:output_type -> auth.TransactionResponse
+	1, // [1:2] is the sub-list for method output_type
+	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -254,7 +186,7 @@ func file_transfer_transfer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transfer_transfer_proto_rawDesc), len(file_transfer_transfer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
