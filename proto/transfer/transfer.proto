@@ -1,19 +1,18 @@
 syntax = "proto3";
-package auth;
+package balance;
 
 option go_package = "github.com/autumnterror/tb-proto;transferrpc";
 
 service Transfer {
-  rpc Transfer2022(Transfer2022Request) returns (TransactionResponse);
+  rpc Transfer(TransferRequest) returns (TransactionResponse);
 }
 
-message Transfer2022Request {
+message TransferRequest {
   string FromPrivateKey = 1;
   string ToPublicKey = 2;
   string TokenMint = 3;
   double AmountDouble = 4;
 }
-
 
 message TransactionResponse {
   string TransactionSign = 1;

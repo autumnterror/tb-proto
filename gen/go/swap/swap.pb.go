@@ -137,16 +137,16 @@ var File_swap_swap_proto protoreflect.FileDescriptor
 
 const file_swap_swap_proto_rawDesc = "" +
 	"\n" +
-	"\x0fswap/swap.proto\x12\x04auth\"\x91\x01\n" +
+	"\x0fswap/swap.proto\x12\abalance\"\x91\x01\n" +
 	"\vSwapRequest\x12*\n" +
 	"\x10WalletPrivateKey\x18\x01 \x01(\tR\x10WalletPrivateKey\x12\x18\n" +
 	"\aPayMint\x18\x02 \x01(\tR\aPayMint\x12\x18\n" +
 	"\aBuyMint\x18\x03 \x01(\tR\aBuyMint\x12\"\n" +
 	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"8\n" +
 	"\fSwapResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign25\n" +
-	"\x04Swap\x12-\n" +
-	"\x04Swap\x12\x11.auth.SwapRequest\x1a\x12.auth.SwapResponseB*Z(github.com/autumnterror/tb-proto;swaprpcb\x06proto3"
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2;\n" +
+	"\x04Swap\x123\n" +
+	"\x04Swap\x12\x14.balance.SwapRequest\x1a\x15.balance.SwapResponseB*Z(github.com/autumnterror/tb-proto;swaprpcb\x06proto3"
 
 var (
 	file_swap_swap_proto_rawDescOnce sync.Once
@@ -162,12 +162,12 @@ func file_swap_swap_proto_rawDescGZIP() []byte {
 
 var file_swap_swap_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_swap_swap_proto_goTypes = []any{
-	(*SwapRequest)(nil),  // 0: auth.SwapRequest
-	(*SwapResponse)(nil), // 1: auth.SwapResponse
+	(*SwapRequest)(nil),  // 0: balance.SwapRequest
+	(*SwapResponse)(nil), // 1: balance.SwapResponse
 }
 var file_swap_swap_proto_depIdxs = []int32{
-	0, // 0: auth.Swap.Swap:input_type -> auth.SwapRequest
-	1, // 1: auth.Swap.Swap:output_type -> auth.SwapResponse
+	0, // 0: balance.Swap.Swap:input_type -> balance.SwapRequest
+	1, // 1: balance.Swap.Swap:output_type -> balance.SwapResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

@@ -1,0 +1,18 @@
+syntax = "proto3";
+package balance;
+
+option go_package = "github.com/autumnterror/tb-proto;balancerpc";
+
+service Balance {
+  rpc GetBalance(BalanceRequest) returns (BalanceResponse);
+}
+
+
+message BalanceRequest {
+  string WalletPublicKey = 1;
+  string Mint = 2;
+}
+
+message BalanceResponse {
+  double Balance = 1;
+}

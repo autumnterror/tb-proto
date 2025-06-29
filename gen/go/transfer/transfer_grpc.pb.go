@@ -19,14 +19,14 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Transfer_Transfer2022_FullMethodName = "/auth.Transfer/Transfer2022"
+	Transfer_Transfer_FullMethodName = "/balance.Transfer/Transfer"
 )
 
 // TransferClient is the client API for Transfer service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransferClient interface {
-	Transfer2022(ctx context.Context, in *Transfer2022Request, opts ...grpc.CallOption) (*TransactionResponse, error)
+	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 }
 
 type transferClient struct {
@@ -37,10 +37,10 @@ func NewTransferClient(cc grpc.ClientConnInterface) TransferClient {
 	return &transferClient{cc}
 }
 
-func (c *transferClient) Transfer2022(ctx context.Context, in *Transfer2022Request, opts ...grpc.CallOption) (*TransactionResponse, error) {
+func (c *transferClient) Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(TransactionResponse)
-	err := c.cc.Invoke(ctx, Transfer_Transfer2022_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, Transfer_Transfer_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -51,7 +51,7 @@ func (c *transferClient) Transfer2022(ctx context.Context, in *Transfer2022Reque
 // All implementations must embed UnimplementedTransferServer
 // for forward compatibility.
 type TransferServer interface {
-	Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error)
+	Transfer(context.Context, *TransferRequest) (*TransactionResponse, error)
 	mustEmbedUnimplementedTransferServer()
 }
 
@@ -62,8 +62,8 @@ type TransferServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTransferServer struct{}
 
-func (UnimplementedTransferServer) Transfer2022(context.Context, *Transfer2022Request) (*TransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Transfer2022 not implemented")
+func (UnimplementedTransferServer) Transfer(context.Context, *TransferRequest) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Transfer not implemented")
 }
 func (UnimplementedTransferServer) mustEmbedUnimplementedTransferServer() {}
 func (UnimplementedTransferServer) testEmbeddedByValue()                  {}
@@ -86,20 +86,20 @@ func RegisterTransferServer(s grpc.ServiceRegistrar, srv TransferServer) {
 	s.RegisterService(&Transfer_ServiceDesc, srv)
 }
 
-func _Transfer_Transfer2022_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Transfer2022Request)
+func _Transfer_Transfer_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(TransferRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(TransferServer).Transfer2022(ctx, in)
+		return srv.(TransferServer).Transfer(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: Transfer_Transfer2022_FullMethodName,
+		FullMethod: Transfer_Transfer_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransferServer).Transfer2022(ctx, req.(*Transfer2022Request))
+		return srv.(TransferServer).Transfer(ctx, req.(*TransferRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -108,12 +108,12 @@ func _Transfer_Transfer2022_Handler(srv interface{}, ctx context.Context, dec fu
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Transfer_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Transfer",
+	ServiceName: "balance.Transfer",
 	HandlerType: (*TransferServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Transfer2022",
-			Handler:    _Transfer_Transfer2022_Handler,
+			MethodName: "Transfer",
+			Handler:    _Transfer_Transfer_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

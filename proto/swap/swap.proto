@@ -1,5 +1,5 @@
 syntax = "proto3";
-package auth;
+package balance;
 
 option go_package = "github.com/autumnterror/tb-proto;swaprpc";
 

@@ -21,7 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Transfer2022Request struct {
+type TransferRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	FromPrivateKey string                 `protobuf:"bytes,1,opt,name=FromPrivateKey,proto3" json:"FromPrivateKey,omitempty"`
 	ToPublicKey    string                 `protobuf:"bytes,2,opt,name=ToPublicKey,proto3" json:"ToPublicKey,omitempty"`
@@ -31,20 +31,20 @@ type Transfer2022Request struct {
 	sizeCache      protoimpl.SizeCache
 }
 
-func (x *Transfer2022Request) Reset() {
-	*x = Transfer2022Request{}
+func (x *TransferRequest) Reset() {
+	*x = TransferRequest{}
 	mi := &file_transfer_transfer_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Transfer2022Request) String() string {
+func (x *TransferRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Transfer2022Request) ProtoMessage() {}
+func (*TransferRequest) ProtoMessage() {}
 
-func (x *Transfer2022Request) ProtoReflect() protoreflect.Message {
+func (x *TransferRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_transfer_transfer_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -56,33 +56,33 @@ func (x *Transfer2022Request) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Transfer2022Request.ProtoReflect.Descriptor instead.
-func (*Transfer2022Request) Descriptor() ([]byte, []int) {
+// Deprecated: Use TransferRequest.ProtoReflect.Descriptor instead.
+func (*TransferRequest) Descriptor() ([]byte, []int) {
 	return file_transfer_transfer_proto_rawDescGZIP(), []int{0}
 }
 
-func (x *Transfer2022Request) GetFromPrivateKey() string {
+func (x *TransferRequest) GetFromPrivateKey() string {
 	if x != nil {
 		return x.FromPrivateKey
 	}
 	return ""
 }
 
-func (x *Transfer2022Request) GetToPublicKey() string {
+func (x *TransferRequest) GetToPublicKey() string {
 	if x != nil {
 		return x.ToPublicKey
 	}
 	return ""
 }
 
-func (x *Transfer2022Request) GetTokenMint() string {
+func (x *TransferRequest) GetTokenMint() string {
 	if x != nil {
 		return x.TokenMint
 	}
 	return ""
 }
 
-func (x *Transfer2022Request) GetAmountDouble() float64 {
+func (x *TransferRequest) GetAmountDouble() float64 {
 	if x != nil {
 		return x.AmountDouble
 	}
@@ -137,16 +137,16 @@ var File_transfer_transfer_proto protoreflect.FileDescriptor
 
 const file_transfer_transfer_proto_rawDesc = "" +
 	"\n" +
-	"\x17transfer/transfer.proto\x12\x04auth\"\xa1\x01\n" +
-	"\x13Transfer2022Request\x12&\n" +
+	"\x17transfer/transfer.proto\x12\abalance\"\x9d\x01\n" +
+	"\x0fTransferRequest\x12&\n" +
 	"\x0eFromPrivateKey\x18\x01 \x01(\tR\x0eFromPrivateKey\x12 \n" +
 	"\vToPublicKey\x18\x02 \x01(\tR\vToPublicKey\x12\x1c\n" +
 	"\tTokenMint\x18\x03 \x01(\tR\tTokenMint\x12\"\n" +
 	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"?\n" +
 	"\x13TransactionResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2P\n" +
-	"\bTransfer\x12D\n" +
-	"\fTransfer2022\x12\x19.auth.Transfer2022Request\x1a\x19.auth.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2N\n" +
+	"\bTransfer\x12B\n" +
+	"\bTransfer\x12\x18.balance.TransferRequest\x1a\x1c.balance.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
 
 var (
 	file_transfer_transfer_proto_rawDescOnce sync.Once
@@ -162,12 +162,12 @@ func file_transfer_transfer_proto_rawDescGZIP() []byte {
 
 var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_transfer_transfer_proto_goTypes = []any{
-	(*Transfer2022Request)(nil), // 0: auth.Transfer2022Request
-	(*TransactionResponse)(nil), // 1: auth.TransactionResponse
+	(*TransferRequest)(nil),     // 0: balance.TransferRequest
+	(*TransactionResponse)(nil), // 1: balance.TransactionResponse
 }
 var file_transfer_transfer_proto_depIdxs = []int32{
-	0, // 0: auth.Transfer.Transfer2022:input_type -> auth.Transfer2022Request
-	1, // 1: auth.Transfer.Transfer2022:output_type -> auth.TransactionResponse
+	0, // 0: balance.Transfer.Transfer:input_type -> balance.TransferRequest
+	1, // 1: balance.Transfer.Transfer:output_type -> balance.TransactionResponse
 	1, // [1:2] is the sub-list for method output_type
 	0, // [0:1] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

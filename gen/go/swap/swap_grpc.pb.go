@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Swap_Swap_FullMethodName = "/auth.Swap/Swap"
+	Swap_Swap_FullMethodName = "/balance.Swap/Swap"
 )
 
 // SwapClient is the client API for Swap service.
@@ -108,7 +108,7 @@ func _Swap_Swap_Handler(srv interface{}, ctx context.Context, dec func(interface
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Swap_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "auth.Swap",
+	ServiceName: "balance.Swap",
 	HandlerType: (*SwapServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
