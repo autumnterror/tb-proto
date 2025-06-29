@@ -19,8 +19,9 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Transfer_Transfer_FullMethodName     = "/balance.Transfer/Transfer"
-	Transfer_GetPublicKey_FullMethodName = "/balance.Transfer/GetPublicKey"
+	Transfer_Transfer_FullMethodName                 = "/balance.Transfer/Transfer"
+	Transfer_GetPublicKey_FullMethodName             = "/balance.Transfer/GetPublicKey"
+	Transfer_GetMinimumBalanceForRent_FullMethodName = "/balance.Transfer/GetMinimumBalanceForRent"
 )
 
 // TransferClient is the client API for Transfer service.
@@ -29,6 +30,7 @@ const (
 type TransferClient interface {
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 	GetPublicKey(ctx context.Context, in *PrivateKeyRequest, opts ...grpc.CallOption) (*PublicKeyResponse, error)
+	GetMinimumBalanceForRent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetMinimumBalanceForRentResponse, error)
 }
 
 type transferClient struct {
@@ -59,12 +61,23 @@ func (c *transferClient) GetPublicKey(ctx context.Context, in *PrivateKeyRequest
 	return out, nil
 }
 
+func (c *transferClient) GetMinimumBalanceForRent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetMinimumBalanceForRentResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetMinimumBalanceForRentResponse)
+	err := c.cc.Invoke(ctx, Transfer_GetMinimumBalanceForRent_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransferServer is the server API for Transfer service.
 // All implementations must embed UnimplementedTransferServer
 // for forward compatibility.
 type TransferServer interface {
 	Transfer(context.Context, *TransferRequest) (*TransactionResponse, error)
 	GetPublicKey(context.Context, *PrivateKeyRequest) (*PublicKeyResponse, error)
+	GetMinimumBalanceForRent(context.Context, *Empty) (*GetMinimumBalanceForRentResponse, error)
 	mustEmbedUnimplementedTransferServer()
 }
 
@@ -80,6 +93,9 @@ func (UnimplementedTransferServer) Transfer(context.Context, *TransferRequest) (
 }
 func (UnimplementedTransferServer) GetPublicKey(context.Context, *PrivateKeyRequest) (*PublicKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPublicKey not implemented")
+}
+func (UnimplementedTransferServer) GetMinimumBalanceForRent(context.Context, *Empty) (*GetMinimumBalanceForRentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetMinimumBalanceForRent not implemented")
 }
 func (UnimplementedTransferServer) mustEmbedUnimplementedTransferServer() {}
 func (UnimplementedTransferServer) testEmbeddedByValue()                  {}
@@ -138,6 +154,24 @@ func _Transfer_GetPublicKey_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Transfer_GetMinimumBalanceForRent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Empty)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransferServer).GetMinimumBalanceForRent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Transfer_GetMinimumBalanceForRent_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransferServer).GetMinimumBalanceForRent(ctx, req.(*Empty))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Transfer_ServiceDesc is the grpc.ServiceDesc for Transfer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -152,6 +186,10 @@ var Transfer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetPublicKey",
 			Handler:    _Transfer_GetPublicKey_Handler,
+		},
+		{
+			MethodName: "GetMinimumBalanceForRent",
+			Handler:    _Transfer_GetMinimumBalanceForRent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

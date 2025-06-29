@@ -6,6 +6,13 @@ option go_package = "github.com/autumnterror/tb-proto;transferrpc";
 service Transfer {
   rpc Transfer(TransferRequest) returns (TransactionResponse);
   rpc GetPublicKey(PrivateKeyRequest) returns (PublicKeyResponse);
+  rpc GetMinimumBalanceForRent(Empty) returns (GetMinimumBalanceForRentResponse);
+}
+
+message Empty {}
+
+message GetMinimumBalanceForRentResponse {
+  double MinimumBalanceForRent = 1;
 }
 
 message PrivateKeyRequest {

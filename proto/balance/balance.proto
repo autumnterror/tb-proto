@@ -1,6 +1,7 @@
 syntax = "proto3";
 package balance;
 
+
 option go_package = "github.com/autumnterror/tb-proto;balancerpc";
 
 service Balance {
