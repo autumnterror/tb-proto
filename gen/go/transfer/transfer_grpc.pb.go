@@ -19,7 +19,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Transfer_Transfer_FullMethodName = "/balance.Transfer/Transfer"
+	Transfer_Transfer_FullMethodName     = "/balance.Transfer/Transfer"
+	Transfer_GetPublicKey_FullMethodName = "/balance.Transfer/GetPublicKey"
 )
 
 // TransferClient is the client API for Transfer service.
@@ -27,6 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransferClient interface {
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
+	GetPublicKey(ctx context.Context, in *PrivateKeyRequest, opts ...grpc.CallOption) (*PublicKeyResponse, error)
 }
 
 type transferClient struct {
@@ -47,11 +49,22 @@ func (c *transferClient) Transfer(ctx context.Context, in *TransferRequest, opts
 	return out, nil
 }
 
+func (c *transferClient) GetPublicKey(ctx context.Context, in *PrivateKeyRequest, opts ...grpc.CallOption) (*PublicKeyResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(PublicKeyResponse)
+	err := c.cc.Invoke(ctx, Transfer_GetPublicKey_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // TransferServer is the server API for Transfer service.
 // All implementations must embed UnimplementedTransferServer
 // for forward compatibility.
 type TransferServer interface {
 	Transfer(context.Context, *TransferRequest) (*TransactionResponse, error)
+	GetPublicKey(context.Context, *PrivateKeyRequest) (*PublicKeyResponse, error)
 	mustEmbedUnimplementedTransferServer()
 }
 
@@ -64,6 +77,9 @@ type UnimplementedTransferServer struct{}
 
 func (UnimplementedTransferServer) Transfer(context.Context, *TransferRequest) (*TransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Transfer not implemented")
+}
+func (UnimplementedTransferServer) GetPublicKey(context.Context, *PrivateKeyRequest) (*PublicKeyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetPublicKey not implemented")
 }
 func (UnimplementedTransferServer) mustEmbedUnimplementedTransferServer() {}
 func (UnimplementedTransferServer) testEmbeddedByValue()                  {}
@@ -104,6 +120,24 @@ func _Transfer_Transfer_Handler(srv interface{}, ctx context.Context, dec func(i
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Transfer_GetPublicKey_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(PrivateKeyRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TransferServer).GetPublicKey(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Transfer_GetPublicKey_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TransferServer).GetPublicKey(ctx, req.(*PrivateKeyRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Transfer_ServiceDesc is the grpc.ServiceDesc for Transfer service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +148,10 @@ var Transfer_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Transfer",
 			Handler:    _Transfer_Transfer_Handler,
+		},
+		{
+			MethodName: "GetPublicKey",
+			Handler:    _Transfer_GetPublicKey_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

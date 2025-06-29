@@ -21,6 +21,94 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type PrivateKeyRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PrivateKey    string                 `protobuf:"bytes,1,opt,name=PrivateKey,proto3" json:"PrivateKey,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PrivateKeyRequest) Reset() {
+	*x = PrivateKeyRequest{}
+	mi := &file_transfer_transfer_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PrivateKeyRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PrivateKeyRequest) ProtoMessage() {}
+
+func (x *PrivateKeyRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_transfer_transfer_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PrivateKeyRequest.ProtoReflect.Descriptor instead.
+func (*PrivateKeyRequest) Descriptor() ([]byte, []int) {
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *PrivateKeyRequest) GetPrivateKey() string {
+	if x != nil {
+		return x.PrivateKey
+	}
+	return ""
+}
+
+type PublicKeyResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PublicKey     string                 `protobuf:"bytes,1,opt,name=PublicKey,proto3" json:"PublicKey,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *PublicKeyResponse) Reset() {
+	*x = PublicKeyResponse{}
+	mi := &file_transfer_transfer_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *PublicKeyResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*PublicKeyResponse) ProtoMessage() {}
+
+func (x *PublicKeyResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_transfer_transfer_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use PublicKeyResponse.ProtoReflect.Descriptor instead.
+func (*PublicKeyResponse) Descriptor() ([]byte, []int) {
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *PublicKeyResponse) GetPublicKey() string {
+	if x != nil {
+		return x.PublicKey
+	}
+	return ""
+}
+
 type TransferRequest struct {
 	state          protoimpl.MessageState `protogen:"open.v1"`
 	FromPrivateKey string                 `protobuf:"bytes,1,opt,name=FromPrivateKey,proto3" json:"FromPrivateKey,omitempty"`
@@ -33,7 +121,7 @@ type TransferRequest struct {
 
 func (x *TransferRequest) Reset() {
 	*x = TransferRequest{}
-	mi := &file_transfer_transfer_proto_msgTypes[0]
+	mi := &file_transfer_transfer_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -45,7 +133,7 @@ func (x *TransferRequest) String() string {
 func (*TransferRequest) ProtoMessage() {}
 
 func (x *TransferRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[0]
+	mi := &file_transfer_transfer_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -58,7 +146,7 @@ func (x *TransferRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferRequest.ProtoReflect.Descriptor instead.
 func (*TransferRequest) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{0}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *TransferRequest) GetFromPrivateKey() string {
@@ -98,7 +186,7 @@ type TransactionResponse struct {
 
 func (x *TransactionResponse) Reset() {
 	*x = TransactionResponse{}
-	mi := &file_transfer_transfer_proto_msgTypes[1]
+	mi := &file_transfer_transfer_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -110,7 +198,7 @@ func (x *TransactionResponse) String() string {
 func (*TransactionResponse) ProtoMessage() {}
 
 func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[1]
+	mi := &file_transfer_transfer_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -123,7 +211,7 @@ func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionResponse.ProtoReflect.Descriptor instead.
 func (*TransactionResponse) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{1}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TransactionResponse) GetTransactionSign() string {
@@ -137,16 +225,23 @@ var File_transfer_transfer_proto protoreflect.FileDescriptor
 
 const file_transfer_transfer_proto_rawDesc = "" +
 	"\n" +
-	"\x17transfer/transfer.proto\x12\abalance\"\x9d\x01\n" +
+	"\x17transfer/transfer.proto\x12\abalance\"3\n" +
+	"\x11PrivateKeyRequest\x12\x1e\n" +
+	"\n" +
+	"PrivateKey\x18\x01 \x01(\tR\n" +
+	"PrivateKey\"1\n" +
+	"\x11PublicKeyResponse\x12\x1c\n" +
+	"\tPublicKey\x18\x01 \x01(\tR\tPublicKey\"\x9d\x01\n" +
 	"\x0fTransferRequest\x12&\n" +
 	"\x0eFromPrivateKey\x18\x01 \x01(\tR\x0eFromPrivateKey\x12 \n" +
 	"\vToPublicKey\x18\x02 \x01(\tR\vToPublicKey\x12\x1c\n" +
 	"\tTokenMint\x18\x03 \x01(\tR\tTokenMint\x12\"\n" +
 	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"?\n" +
 	"\x13TransactionResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2N\n" +
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\x96\x01\n" +
 	"\bTransfer\x12B\n" +
-	"\bTransfer\x12\x18.balance.TransferRequest\x1a\x1c.balance.TransactionResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
+	"\bTransfer\x12\x18.balance.TransferRequest\x1a\x1c.balance.TransactionResponse\x12F\n" +
+	"\fGetPublicKey\x12\x1a.balance.PrivateKeyRequest\x1a\x1a.balance.PublicKeyResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
 
 var (
 	file_transfer_transfer_proto_rawDescOnce sync.Once
@@ -160,16 +255,20 @@ func file_transfer_transfer_proto_rawDescGZIP() []byte {
 	return file_transfer_transfer_proto_rawDescData
 }
 
-var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_transfer_transfer_proto_goTypes = []any{
-	(*TransferRequest)(nil),     // 0: balance.TransferRequest
-	(*TransactionResponse)(nil), // 1: balance.TransactionResponse
+	(*PrivateKeyRequest)(nil),   // 0: balance.PrivateKeyRequest
+	(*PublicKeyResponse)(nil),   // 1: balance.PublicKeyResponse
+	(*TransferRequest)(nil),     // 2: balance.TransferRequest
+	(*TransactionResponse)(nil), // 3: balance.TransactionResponse
 }
 var file_transfer_transfer_proto_depIdxs = []int32{
-	0, // 0: balance.Transfer.Transfer:input_type -> balance.TransferRequest
-	1, // 1: balance.Transfer.Transfer:output_type -> balance.TransactionResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 0: balance.Transfer.Transfer:input_type -> balance.TransferRequest
+	0, // 1: balance.Transfer.GetPublicKey:input_type -> balance.PrivateKeyRequest
+	3, // 2: balance.Transfer.Transfer:output_type -> balance.TransactionResponse
+	1, // 3: balance.Transfer.GetPublicKey:output_type -> balance.PublicKeyResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -186,7 +285,7 @@ func file_transfer_transfer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transfer_transfer_proto_rawDesc), len(file_transfer_transfer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

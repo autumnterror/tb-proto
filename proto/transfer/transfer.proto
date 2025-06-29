@@ -5,6 +5,15 @@ option go_package = "github.com/autumnterror/tb-proto;transferrpc";
 
 service Transfer {
   rpc Transfer(TransferRequest) returns (TransactionResponse);
+  rpc GetPublicKey(PrivateKeyRequest) returns (PublicKeyResponse);
+}
+
+message PrivateKeyRequest {
+  string PrivateKey = 1;
+}
+
+message PublicKeyResponse {
+  string PublicKey = 1;
 }
 
 message TransferRequest {
