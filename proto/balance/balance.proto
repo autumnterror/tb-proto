@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 package balance;
 
 
@@ -6,10 +7,9 @@ option go_package = "github.com/autumnterror/tb-proto;balancerpc";
 
 service Balance {
   rpc GetBalance(BalanceRequest) returns (BalanceResponse);
-  rpc CreateAccount(Empty) returns (CreateAccountResponse);
+  rpc CreateAccount(google.protobuf.Empty) returns (CreateAccountResponse);
 }
 
-message Empty {}
 
 message CreateAccountResponse {
   string PrivateKey = 1;

@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -28,7 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type BalanceClient interface {
 	GetBalance(ctx context.Context, in *BalanceRequest, opts ...grpc.CallOption) (*BalanceResponse, error)
-	CreateAccount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CreateAccountResponse, error)
+	CreateAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CreateAccountResponse, error)
 }
 
 type balanceClient struct {
@@ -49,7 +50,7 @@ func (c *balanceClient) GetBalance(ctx context.Context, in *BalanceRequest, opts
 	return out, nil
 }
 
-func (c *balanceClient) CreateAccount(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*CreateAccountResponse, error) {
+func (c *balanceClient) CreateAccount(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*CreateAccountResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(CreateAccountResponse)
 	err := c.cc.Invoke(ctx, Balance_CreateAccount_FullMethodName, in, out, cOpts...)
@@ -64,7 +65,7 @@ func (c *balanceClient) CreateAccount(ctx context.Context, in *Empty, opts ...gr
 // for forward compatibility.
 type BalanceServer interface {
 	GetBalance(context.Context, *BalanceRequest) (*BalanceResponse, error)
-	CreateAccount(context.Context, *Empty) (*CreateAccountResponse, error)
+	CreateAccount(context.Context, *emptypb.Empty) (*CreateAccountResponse, error)
 	mustEmbedUnimplementedBalanceServer()
 }
 
@@ -78,7 +79,7 @@ type UnimplementedBalanceServer struct{}
 func (UnimplementedBalanceServer) GetBalance(context.Context, *BalanceRequest) (*BalanceResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBalance not implemented")
 }
-func (UnimplementedBalanceServer) CreateAccount(context.Context, *Empty) (*CreateAccountResponse, error) {
+func (UnimplementedBalanceServer) CreateAccount(context.Context, *emptypb.Empty) (*CreateAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateAccount not implemented")
 }
 func (UnimplementedBalanceServer) mustEmbedUnimplementedBalanceServer() {}
@@ -121,7 +122,7 @@ func _Balance_GetBalance_Handler(srv interface{}, ctx context.Context, dec func(
 }
 
 func _Balance_CreateAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -133,7 +134,7 @@ func _Balance_CreateAccount_Handler(srv interface{}, ctx context.Context, dec fu
 		FullMethod: Balance_CreateAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(BalanceServer).CreateAccount(ctx, req.(*Empty))
+		return srv.(BalanceServer).CreateAccount(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }

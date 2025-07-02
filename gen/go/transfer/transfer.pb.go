@@ -9,6 +9,7 @@ package transferrpc
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	protoimpl "google.golang.org/protobuf/runtime/protoimpl"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 	reflect "reflect"
 	sync "sync"
 	unsafe "unsafe"
@@ -21,42 +22,6 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Empty struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Empty) Reset() {
-	*x = Empty{}
-	mi := &file_transfer_transfer_proto_msgTypes[0]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Empty) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Empty) ProtoMessage() {}
-
-func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[0]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
-func (*Empty) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{0}
-}
-
 type GetMinimumBalanceForRentResponse struct {
 	state                 protoimpl.MessageState `protogen:"open.v1"`
 	MinimumBalanceForRent float64                `protobuf:"fixed64,1,opt,name=MinimumBalanceForRent,proto3" json:"MinimumBalanceForRent,omitempty"`
@@ -66,7 +31,7 @@ type GetMinimumBalanceForRentResponse struct {
 
 func (x *GetMinimumBalanceForRentResponse) Reset() {
 	*x = GetMinimumBalanceForRentResponse{}
-	mi := &file_transfer_transfer_proto_msgTypes[1]
+	mi := &file_transfer_transfer_proto_msgTypes[0]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -78,7 +43,7 @@ func (x *GetMinimumBalanceForRentResponse) String() string {
 func (*GetMinimumBalanceForRentResponse) ProtoMessage() {}
 
 func (x *GetMinimumBalanceForRentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[1]
+	mi := &file_transfer_transfer_proto_msgTypes[0]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -91,7 +56,7 @@ func (x *GetMinimumBalanceForRentResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMinimumBalanceForRentResponse.ProtoReflect.Descriptor instead.
 func (*GetMinimumBalanceForRentResponse) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{1}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *GetMinimumBalanceForRentResponse) GetMinimumBalanceForRent() float64 {
@@ -110,7 +75,7 @@ type PrivateKeyRequest struct {
 
 func (x *PrivateKeyRequest) Reset() {
 	*x = PrivateKeyRequest{}
-	mi := &file_transfer_transfer_proto_msgTypes[2]
+	mi := &file_transfer_transfer_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -122,7 +87,7 @@ func (x *PrivateKeyRequest) String() string {
 func (*PrivateKeyRequest) ProtoMessage() {}
 
 func (x *PrivateKeyRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[2]
+	mi := &file_transfer_transfer_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -135,7 +100,7 @@ func (x *PrivateKeyRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PrivateKeyRequest.ProtoReflect.Descriptor instead.
 func (*PrivateKeyRequest) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{2}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *PrivateKeyRequest) GetPrivateKey() string {
@@ -154,7 +119,7 @@ type PublicKeyResponse struct {
 
 func (x *PublicKeyResponse) Reset() {
 	*x = PublicKeyResponse{}
-	mi := &file_transfer_transfer_proto_msgTypes[3]
+	mi := &file_transfer_transfer_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -166,7 +131,7 @@ func (x *PublicKeyResponse) String() string {
 func (*PublicKeyResponse) ProtoMessage() {}
 
 func (x *PublicKeyResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[3]
+	mi := &file_transfer_transfer_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -179,7 +144,7 @@ func (x *PublicKeyResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PublicKeyResponse.ProtoReflect.Descriptor instead.
 func (*PublicKeyResponse) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{3}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *PublicKeyResponse) GetPublicKey() string {
@@ -201,7 +166,7 @@ type TransferRequest struct {
 
 func (x *TransferRequest) Reset() {
 	*x = TransferRequest{}
-	mi := &file_transfer_transfer_proto_msgTypes[4]
+	mi := &file_transfer_transfer_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -213,7 +178,7 @@ func (x *TransferRequest) String() string {
 func (*TransferRequest) ProtoMessage() {}
 
 func (x *TransferRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[4]
+	mi := &file_transfer_transfer_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -226,7 +191,7 @@ func (x *TransferRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransferRequest.ProtoReflect.Descriptor instead.
 func (*TransferRequest) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{4}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *TransferRequest) GetFromPrivateKey() string {
@@ -266,7 +231,7 @@ type TransactionResponse struct {
 
 func (x *TransactionResponse) Reset() {
 	*x = TransactionResponse{}
-	mi := &file_transfer_transfer_proto_msgTypes[5]
+	mi := &file_transfer_transfer_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -278,7 +243,7 @@ func (x *TransactionResponse) String() string {
 func (*TransactionResponse) ProtoMessage() {}
 
 func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_transfer_transfer_proto_msgTypes[5]
+	mi := &file_transfer_transfer_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -291,7 +256,7 @@ func (x *TransactionResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use TransactionResponse.ProtoReflect.Descriptor instead.
 func (*TransactionResponse) Descriptor() ([]byte, []int) {
-	return file_transfer_transfer_proto_rawDescGZIP(), []int{5}
+	return file_transfer_transfer_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *TransactionResponse) GetTransactionSign() string {
@@ -305,8 +270,7 @@ var File_transfer_transfer_proto protoreflect.FileDescriptor
 
 const file_transfer_transfer_proto_rawDesc = "" +
 	"\n" +
-	"\x17transfer/transfer.proto\x12\abalance\"\a\n" +
-	"\x05Empty\"X\n" +
+	"\x17transfer/transfer.proto\x12\abalance\x1a\x1bgoogle/protobuf/empty.proto\"X\n" +
 	" GetMinimumBalanceForRentResponse\x124\n" +
 	"\x15MinimumBalanceForRent\x18\x01 \x01(\x01R\x15MinimumBalanceForRent\"3\n" +
 	"\x11PrivateKeyRequest\x12\x1e\n" +
@@ -321,11 +285,11 @@ const file_transfer_transfer_proto_rawDesc = "" +
 	"\tTokenMint\x18\x03 \x01(\tR\tTokenMint\x12\"\n" +
 	"\fAmountDouble\x18\x04 \x01(\x01R\fAmountDouble\"?\n" +
 	"\x13TransactionResponse\x12(\n" +
-	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\xed\x01\n" +
+	"\x0fTransactionSign\x18\x01 \x01(\tR\x0fTransactionSign2\xf5\x01\n" +
 	"\bTransfer\x12B\n" +
 	"\bTransfer\x12\x18.balance.TransferRequest\x1a\x1c.balance.TransactionResponse\x12F\n" +
-	"\fGetPublicKey\x12\x1a.balance.PrivateKeyRequest\x1a\x1a.balance.PublicKeyResponse\x12U\n" +
-	"\x18GetMinimumBalanceForRent\x12\x0e.balance.Empty\x1a).balance.GetMinimumBalanceForRentResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
+	"\fGetPublicKey\x12\x1a.balance.PrivateKeyRequest\x1a\x1a.balance.PublicKeyResponse\x12]\n" +
+	"\x18GetMinimumBalanceForRent\x12\x16.google.protobuf.Empty\x1a).balance.GetMinimumBalanceForRentResponseB.Z,github.com/autumnterror/tb-proto;transferrpcb\x06proto3"
 
 var (
 	file_transfer_transfer_proto_rawDescOnce sync.Once
@@ -339,22 +303,22 @@ func file_transfer_transfer_proto_rawDescGZIP() []byte {
 	return file_transfer_transfer_proto_rawDescData
 }
 
-var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_transfer_transfer_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_transfer_transfer_proto_goTypes = []any{
-	(*Empty)(nil),                            // 0: balance.Empty
-	(*GetMinimumBalanceForRentResponse)(nil), // 1: balance.GetMinimumBalanceForRentResponse
-	(*PrivateKeyRequest)(nil),                // 2: balance.PrivateKeyRequest
-	(*PublicKeyResponse)(nil),                // 3: balance.PublicKeyResponse
-	(*TransferRequest)(nil),                  // 4: balance.TransferRequest
-	(*TransactionResponse)(nil),              // 5: balance.TransactionResponse
+	(*GetMinimumBalanceForRentResponse)(nil), // 0: balance.GetMinimumBalanceForRentResponse
+	(*PrivateKeyRequest)(nil),                // 1: balance.PrivateKeyRequest
+	(*PublicKeyResponse)(nil),                // 2: balance.PublicKeyResponse
+	(*TransferRequest)(nil),                  // 3: balance.TransferRequest
+	(*TransactionResponse)(nil),              // 4: balance.TransactionResponse
+	(*emptypb.Empty)(nil),                    // 5: google.protobuf.Empty
 }
 var file_transfer_transfer_proto_depIdxs = []int32{
-	4, // 0: balance.Transfer.Transfer:input_type -> balance.TransferRequest
-	2, // 1: balance.Transfer.GetPublicKey:input_type -> balance.PrivateKeyRequest
-	0, // 2: balance.Transfer.GetMinimumBalanceForRent:input_type -> balance.Empty
-	5, // 3: balance.Transfer.Transfer:output_type -> balance.TransactionResponse
-	3, // 4: balance.Transfer.GetPublicKey:output_type -> balance.PublicKeyResponse
-	1, // 5: balance.Transfer.GetMinimumBalanceForRent:output_type -> balance.GetMinimumBalanceForRentResponse
+	3, // 0: balance.Transfer.Transfer:input_type -> balance.TransferRequest
+	1, // 1: balance.Transfer.GetPublicKey:input_type -> balance.PrivateKeyRequest
+	5, // 2: balance.Transfer.GetMinimumBalanceForRent:input_type -> google.protobuf.Empty
+	4, // 3: balance.Transfer.Transfer:output_type -> balance.TransactionResponse
+	2, // 4: balance.Transfer.GetPublicKey:output_type -> balance.PublicKeyResponse
+	0, // 5: balance.Transfer.GetMinimumBalanceForRent:output_type -> balance.GetMinimumBalanceForRentResponse
 	3, // [3:6] is the sub-list for method output_type
 	0, // [0:3] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -373,7 +337,7 @@ func file_transfer_transfer_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transfer_transfer_proto_rawDesc), len(file_transfer_transfer_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   6,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -30,7 +31,7 @@ const (
 type TransferClient interface {
 	Transfer(ctx context.Context, in *TransferRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 	GetPublicKey(ctx context.Context, in *PrivateKeyRequest, opts ...grpc.CallOption) (*PublicKeyResponse, error)
-	GetMinimumBalanceForRent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetMinimumBalanceForRentResponse, error)
+	GetMinimumBalanceForRent(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMinimumBalanceForRentResponse, error)
 }
 
 type transferClient struct {
@@ -61,7 +62,7 @@ func (c *transferClient) GetPublicKey(ctx context.Context, in *PrivateKeyRequest
 	return out, nil
 }
 
-func (c *transferClient) GetMinimumBalanceForRent(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*GetMinimumBalanceForRentResponse, error) {
+func (c *transferClient) GetMinimumBalanceForRent(ctx context.Context, in *emptypb.Empty, opts ...grpc.CallOption) (*GetMinimumBalanceForRentResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetMinimumBalanceForRentResponse)
 	err := c.cc.Invoke(ctx, Transfer_GetMinimumBalanceForRent_FullMethodName, in, out, cOpts...)
@@ -77,7 +78,7 @@ func (c *transferClient) GetMinimumBalanceForRent(ctx context.Context, in *Empty
 type TransferServer interface {
 	Transfer(context.Context, *TransferRequest) (*TransactionResponse, error)
 	GetPublicKey(context.Context, *PrivateKeyRequest) (*PublicKeyResponse, error)
-	GetMinimumBalanceForRent(context.Context, *Empty) (*GetMinimumBalanceForRentResponse, error)
+	GetMinimumBalanceForRent(context.Context, *emptypb.Empty) (*GetMinimumBalanceForRentResponse, error)
 	mustEmbedUnimplementedTransferServer()
 }
 
@@ -94,7 +95,7 @@ func (UnimplementedTransferServer) Transfer(context.Context, *TransferRequest) (
 func (UnimplementedTransferServer) GetPublicKey(context.Context, *PrivateKeyRequest) (*PublicKeyResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetPublicKey not implemented")
 }
-func (UnimplementedTransferServer) GetMinimumBalanceForRent(context.Context, *Empty) (*GetMinimumBalanceForRentResponse, error) {
+func (UnimplementedTransferServer) GetMinimumBalanceForRent(context.Context, *emptypb.Empty) (*GetMinimumBalanceForRentResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetMinimumBalanceForRent not implemented")
 }
 func (UnimplementedTransferServer) mustEmbedUnimplementedTransferServer() {}
@@ -155,7 +156,7 @@ func _Transfer_GetPublicKey_Handler(srv interface{}, ctx context.Context, dec fu
 }
 
 func _Transfer_GetMinimumBalanceForRent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(Empty)
+	in := new(emptypb.Empty)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
@@ -167,7 +168,7 @@ func _Transfer_GetMinimumBalanceForRent_Handler(srv interface{}, ctx context.Con
 		FullMethod: Transfer_GetMinimumBalanceForRent_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TransferServer).GetMinimumBalanceForRent(ctx, req.(*Empty))
+		return srv.(TransferServer).GetMinimumBalanceForRent(ctx, req.(*emptypb.Empty))
 	}
 	return interceptor(ctx, in, info, handler)
 }
