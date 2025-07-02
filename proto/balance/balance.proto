@@ -6,9 +6,15 @@ option go_package = "github.com/autumnterror/tb-proto;balancerpc";
 
 service Balance {
   rpc GetBalance(BalanceRequest) returns (BalanceResponse);
+  rpc CreateAccount(Empty) returns (CreateAccountResponse);
 }
 
+message Empty {}
 
+message CreateAccountResponse {
+  string PrivateKey = 1;
+  string PublicKey = 2;
+}
 message BalanceRequest {
   string WalletPublicKey = 1;
   string Mint = 2;
@@ -17,3 +23,4 @@ message BalanceRequest {
 message BalanceResponse {
   double Balance = 1;
 }
+

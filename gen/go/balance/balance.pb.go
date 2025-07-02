@@ -21,6 +21,94 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type Empty struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Empty) Reset() {
+	*x = Empty{}
+	mi := &file_balance_balance_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Empty) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Empty) ProtoMessage() {}
+
+func (x *Empty) ProtoReflect() protoreflect.Message {
+	mi := &file_balance_balance_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Empty.ProtoReflect.Descriptor instead.
+func (*Empty) Descriptor() ([]byte, []int) {
+	return file_balance_balance_proto_rawDescGZIP(), []int{0}
+}
+
+type CreateAccountResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	PrivateKey    string                 `protobuf:"bytes,1,opt,name=PrivateKey,proto3" json:"PrivateKey,omitempty"`
+	PublicKey     string                 `protobuf:"bytes,2,opt,name=PublicKey,proto3" json:"PublicKey,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *CreateAccountResponse) Reset() {
+	*x = CreateAccountResponse{}
+	mi := &file_balance_balance_proto_msgTypes[1]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CreateAccountResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateAccountResponse) ProtoMessage() {}
+
+func (x *CreateAccountResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_balance_balance_proto_msgTypes[1]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateAccountResponse.ProtoReflect.Descriptor instead.
+func (*CreateAccountResponse) Descriptor() ([]byte, []int) {
+	return file_balance_balance_proto_rawDescGZIP(), []int{1}
+}
+
+func (x *CreateAccountResponse) GetPrivateKey() string {
+	if x != nil {
+		return x.PrivateKey
+	}
+	return ""
+}
+
+func (x *CreateAccountResponse) GetPublicKey() string {
+	if x != nil {
+		return x.PublicKey
+	}
+	return ""
+}
+
 type BalanceRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	WalletPublicKey string                 `protobuf:"bytes,1,opt,name=WalletPublicKey,proto3" json:"WalletPublicKey,omitempty"`
@@ -31,7 +119,7 @@ type BalanceRequest struct {
 
 func (x *BalanceRequest) Reset() {
 	*x = BalanceRequest{}
-	mi := &file_balance_balance_proto_msgTypes[0]
+	mi := &file_balance_balance_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -43,7 +131,7 @@ func (x *BalanceRequest) String() string {
 func (*BalanceRequest) ProtoMessage() {}
 
 func (x *BalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_balance_balance_proto_msgTypes[0]
+	mi := &file_balance_balance_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -56,7 +144,7 @@ func (x *BalanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BalanceRequest.ProtoReflect.Descriptor instead.
 func (*BalanceRequest) Descriptor() ([]byte, []int) {
-	return file_balance_balance_proto_rawDescGZIP(), []int{0}
+	return file_balance_balance_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *BalanceRequest) GetWalletPublicKey() string {
@@ -82,7 +170,7 @@ type BalanceResponse struct {
 
 func (x *BalanceResponse) Reset() {
 	*x = BalanceResponse{}
-	mi := &file_balance_balance_proto_msgTypes[1]
+	mi := &file_balance_balance_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -94,7 +182,7 @@ func (x *BalanceResponse) String() string {
 func (*BalanceResponse) ProtoMessage() {}
 
 func (x *BalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_balance_balance_proto_msgTypes[1]
+	mi := &file_balance_balance_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -107,7 +195,7 @@ func (x *BalanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BalanceResponse.ProtoReflect.Descriptor instead.
 func (*BalanceResponse) Descriptor() ([]byte, []int) {
-	return file_balance_balance_proto_rawDescGZIP(), []int{1}
+	return file_balance_balance_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *BalanceResponse) GetBalance() float64 {
@@ -121,15 +209,22 @@ var File_balance_balance_proto protoreflect.FileDescriptor
 
 const file_balance_balance_proto_rawDesc = "" +
 	"\n" +
-	"\x15balance/balance.proto\x12\abalance\"N\n" +
+	"\x15balance/balance.proto\x12\abalance\"\a\n" +
+	"\x05Empty\"U\n" +
+	"\x15CreateAccountResponse\x12\x1e\n" +
+	"\n" +
+	"PrivateKey\x18\x01 \x01(\tR\n" +
+	"PrivateKey\x12\x1c\n" +
+	"\tPublicKey\x18\x02 \x01(\tR\tPublicKey\"N\n" +
 	"\x0eBalanceRequest\x12(\n" +
 	"\x0fWalletPublicKey\x18\x01 \x01(\tR\x0fWalletPublicKey\x12\x12\n" +
 	"\x04Mint\x18\x02 \x01(\tR\x04Mint\"+\n" +
 	"\x0fBalanceResponse\x12\x18\n" +
-	"\aBalance\x18\x01 \x01(\x01R\aBalance2J\n" +
+	"\aBalance\x18\x01 \x01(\x01R\aBalance2\x8b\x01\n" +
 	"\aBalance\x12?\n" +
 	"\n" +
-	"GetBalance\x12\x17.balance.BalanceRequest\x1a\x18.balance.BalanceResponseB-Z+github.com/autumnterror/tb-proto;balancerpcb\x06proto3"
+	"GetBalance\x12\x17.balance.BalanceRequest\x1a\x18.balance.BalanceResponse\x12?\n" +
+	"\rCreateAccount\x12\x0e.balance.Empty\x1a\x1e.balance.CreateAccountResponseB-Z+github.com/autumnterror/tb-proto;balancerpcb\x06proto3"
 
 var (
 	file_balance_balance_proto_rawDescOnce sync.Once
@@ -143,16 +238,20 @@ func file_balance_balance_proto_rawDescGZIP() []byte {
 	return file_balance_balance_proto_rawDescData
 }
 
-var file_balance_balance_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_balance_balance_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_balance_balance_proto_goTypes = []any{
-	(*BalanceRequest)(nil),  // 0: balance.BalanceRequest
-	(*BalanceResponse)(nil), // 1: balance.BalanceResponse
+	(*Empty)(nil),                 // 0: balance.Empty
+	(*CreateAccountResponse)(nil), // 1: balance.CreateAccountResponse
+	(*BalanceRequest)(nil),        // 2: balance.BalanceRequest
+	(*BalanceResponse)(nil),       // 3: balance.BalanceResponse
 }
 var file_balance_balance_proto_depIdxs = []int32{
-	0, // 0: balance.Balance.GetBalance:input_type -> balance.BalanceRequest
-	1, // 1: balance.Balance.GetBalance:output_type -> balance.BalanceResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 0: balance.Balance.GetBalance:input_type -> balance.BalanceRequest
+	0, // 1: balance.Balance.CreateAccount:input_type -> balance.Empty
+	3, // 2: balance.Balance.GetBalance:output_type -> balance.BalanceResponse
+	1, // 3: balance.Balance.CreateAccount:output_type -> balance.CreateAccountResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -169,7 +268,7 @@ func file_balance_balance_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_balance_balance_proto_rawDesc), len(file_balance_balance_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
