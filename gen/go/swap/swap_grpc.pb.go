@@ -11,6 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	emptypb "google.golang.org/protobuf/types/known/emptypb"
 )
 
 // This is a compile-time assertion to ensure that this generated file
@@ -19,7 +20,8 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	Swap_Swap_FullMethodName = "/balance.Swap/Swap"
+	Swap_Swap_FullMethodName      = "/balance.Swap/Swap"
+	Swap_GetStatus_FullMethodName = "/balance.Swap/GetStatus"
 )
 
 // SwapClient is the client API for Swap service.
@@ -27,6 +29,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type SwapClient interface {
 	Swap(ctx context.Context, in *SwapRequest, opts ...grpc.CallOption) (*SwapResponse, error)
+	GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type swapClient struct {
@@ -47,11 +50,22 @@ func (c *swapClient) Swap(ctx context.Context, in *SwapRequest, opts ...grpc.Cal
 	return out, nil
 }
 
+func (c *swapClient) GetStatus(ctx context.Context, in *GetStatusRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, Swap_GetStatus_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // SwapServer is the server API for Swap service.
 // All implementations must embed UnimplementedSwapServer
 // for forward compatibility.
 type SwapServer interface {
 	Swap(context.Context, *SwapRequest) (*SwapResponse, error)
+	GetStatus(context.Context, *GetStatusRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedSwapServer()
 }
 
@@ -64,6 +78,9 @@ type UnimplementedSwapServer struct{}
 
 func (UnimplementedSwapServer) Swap(context.Context, *SwapRequest) (*SwapResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Swap not implemented")
+}
+func (UnimplementedSwapServer) GetStatus(context.Context, *GetStatusRequest) (*emptypb.Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetStatus not implemented")
 }
 func (UnimplementedSwapServer) mustEmbedUnimplementedSwapServer() {}
 func (UnimplementedSwapServer) testEmbeddedByValue()              {}
@@ -104,6 +121,24 @@ func _Swap_Swap_Handler(srv interface{}, ctx context.Context, dec func(interface
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Swap_GetStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(SwapServer).GetStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Swap_GetStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(SwapServer).GetStatus(ctx, req.(*GetStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // Swap_ServiceDesc is the grpc.ServiceDesc for Swap service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -114,6 +149,10 @@ var Swap_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Swap",
 			Handler:    _Swap_Swap_Handler,
+		},
+		{
+			MethodName: "GetStatus",
+			Handler:    _Swap_GetStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

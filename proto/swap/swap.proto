@@ -1,12 +1,17 @@
 syntax = "proto3";
+import "google/protobuf/empty.proto";
 package balance;
 
 option go_package = "github.com/autumnterror/tb-proto;swaprpc";
 
 service Swap {
   rpc Swap(SwapRequest) returns (SwapResponse);
+  rpc GetStatus(GetStatusRequest) returns (google.protobuf.Empty);
 }
 
+message GetStatusRequest {
+  string TransactionSign = 1;
+}
 
 message SwapRequest {
   string WalletPrivateKey = 1;
